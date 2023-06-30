@@ -3,7 +3,7 @@ body {
     margin: 0px;
 }
 html, body {
-  max-width: 100%;
+  width: 105%;
   height: 200vh;
   overflow-x: hidden;
 }
@@ -24,14 +24,13 @@ html, body {
     font-family: 'Kanit', sans-serif;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     
     background: rgba(0, 0, 0, 0);
     color: #f1f1f1;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
-    padding: 0px;
     text-align: center;
     justify-content: center;
 
@@ -42,11 +41,13 @@ html, body {
     font-family: 'Kanit', sans-serif;
     display: flex;
     flex-direction: row;
-    position: absolute;
+    position: relative;
     
     
     color: #f1f1f1;
-    width: 100vw;
+    width: 100%;
+    right: 0;
+    left: 0;
     
 
     
@@ -60,34 +61,35 @@ html, body {
     
   }
   .paragraph-content {
+    float: left;
     width: 90vh;
-    max-width: 30vw;
+    max-width: 50vw;
     max-height: 100%;
   }
 
   .content-image {
     width: 30vh;
-    height: 30vh;
-    margin-right: 40px;
-    margin-left: 40px;
+    max-width: 40vw;
+    max-height: 30vh;
+    margin-right: 2vw;
 
     position: relative;
     top: 3px;
   }
 
   h1 {
-    font-size: max(5vw,5vh);
+    font-size: 5vmax;
     margin: 20px;
   }
 
   h2 {
-    font-size: max(2vw,2vh);
+    font-size: 2vmax;
     font-style: italic;
     margin: 20px;
   }
 
   h3 {
-    font-size: max(2vw,2vh);
+    font-size: x-large;
     font-weight: 300;
     margin: 20px;
   }
