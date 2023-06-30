@@ -3,7 +3,7 @@ body {
     margin: 0px;
 }
 html, body {
-  width: 105%;
+  width: 100vw;
   height: 200vh;
   overflow-x: hidden;
 }
