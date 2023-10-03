@@ -23,7 +23,7 @@ function draw() {
     if (bgdiv.clientHeight != height || bgdiv.clientWidth != width) resizeCanvas(bgdiv.clientWidth,bgdiv.clientHeight)
     background("#543344");
     var time = Date.now();
-    var offset = ((time/5000)%10000)*0.2;
+    var offset = ((time/5000)%100000)*0.2;
    
     // shader() sets the active shader, which will be applied to what is drawn next
     shader(myShader);
