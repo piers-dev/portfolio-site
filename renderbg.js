@@ -1,5 +1,5 @@
 let myCanvas;
-let bgdiv = document.getElementById("myVideo")
+let bgdiv
 function preload() {
     // load each shader file (don't worry, we will come back to these!)
     myShader = loadShader('shader.vert', 'shader.frag');
@@ -7,7 +7,8 @@ function preload() {
 
 
 function setup() {
-    myCanvas = createCanvas(bgdiv.width,bgdiv.height,WEBGL);
+    bgdiv = document.getElementById("myVideo")
+    myCanvas = createCanvas(bgdiv.clientWidth,bgdiv.clientHeight,WEBGL);
 
     myCanvas.parent("myVideo");
     pixelDensity(1);
@@ -19,7 +20,7 @@ let firstDraw = true;
 function draw() {
     //if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
     //firstDraw = false;
-    //if (window.height != height || window.width != width) resizeCanvas(window.innerWidth, window.innerHeight)
+    if (bgdiv.clientHeight != height || bgdiv.clientWidth != width) resizeCanvas(bgdiv.clientWidth,bgdiv.clientHeight)
     background("#8b4049");
     var time = Date.now();
     var offset = ((time/5000)%1)*0.2;
