@@ -10,7 +10,7 @@ void main() {
     // now because of the varying vTexCoord, we can access the current texture coordinate
     vec2 uv = vTexCoord*screenSize;
 
-    float mouseDistance = length(uv-mousePos);
+    float mouseDistance = length(vTexCoord);
 
     vec2 modUV = mod((uv+offset)*10.,1.);
 
