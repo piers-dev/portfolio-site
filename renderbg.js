@@ -1,7 +1,7 @@
 let myCanvas;
 let bgdiv = document.getElementById("myVideo")
 function setup() {
-    myCanvas = createCanvas(window.innerWidth, window.innerHeight);
+    myCanvas = createCanvas(window.innerWidth, window.innerHeight,WEBGL);
 
     myCanvas.parent("myVideo");
     noStroke();
@@ -36,10 +36,15 @@ function draw() {
 }
 
 function drawEllipseGrid(range,offset) {
-    for (var x = -160; x <= window.width+160; x += 80) {
-        for (var y = -160; y <= window.height+160; y += 80) {
-            var sizeX = 1-max(min(abs((x+offset)-mouseX)/(80*range),1),0);
-            var sizeY = 1-max(min(abs((y+offset)-mouseY)/(80*range),1),0);
+    let halfwidth = window.width/2;
+    let halfheight = window.height/2;
+
+    
+
+    for (var x = -halfwidth-160; x <= halfwidth+160; x += 80) {
+        for (var y = -halfheight-160; y <= halfheight+160; y += 80) {
+            var sizeX = 1-max(min(abs((x+offset)-(mouseX-halfwidth))/(80*range),1),0);
+            var sizeY = 1-max(min(abs((y+offset)-(mouseY-halfheight))/(80*range),1),0);
             var size = sizeX*sizeY;
             ellipse(x+offset, y+offset, size*140, size*140);
             
