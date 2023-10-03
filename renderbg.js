@@ -21,7 +21,7 @@ function draw() {
     //if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
     //firstDraw = false;
     if (bgdiv.clientHeight != height || bgdiv.clientWidth != width) resizeCanvas(bgdiv.clientWidth,bgdiv.clientHeight)
-    background("#8b4049");
+    background("#543344");
     var time = Date.now();
     var offset = ((time/5000)%1)*0.2;
    
@@ -30,8 +30,23 @@ function draw() {
 
     myShader.setUniform('screenSize', [width/height,1]);
     myShader.setUniform('mousePos', [(mouseX/width)*width/height,1.-mouseY/height]);
+    myShader.setUniform('angle',[-0.3]);
+
+
+
+    myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    fill("#8b4049")
+    rect(0,0,width,height);
+
+    offset -= 0.03;
+    myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    fill("#ae6a47")
+    rect(0,0,width,height);
+
+
+    offset -= 0.03;
     myShader.setUniform('offset',[-offset,-offset*0.5]);
-    // apply the shader to a rectangle taking up the full canvas
+    fill("#caa05a");
     rect(0,0,width,height);
     
 
