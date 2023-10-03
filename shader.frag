@@ -21,7 +21,7 @@ void main() {
 
     float mouseDistance = length(vTexCoord)/1.5+0.2;
 
-    vec2 modUV = mod((uv+offset)*10.,1.);
+    vec2 modUV = mod((uv+offset)*12.,1.);
 
     float stepUV = step(length(modUV*2.-1.),(1.-mouseDistance)*2.);
 
