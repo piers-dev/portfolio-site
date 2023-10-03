@@ -7,7 +7,7 @@ function preload() {
 
 
 function setup() {
-    myCanvas = createCanvas(window.innerWidth, window.innerHeight,WEBGL);
+    myCanvas = createCanvas(screen.width, screen.height,WEBGL);
 
     myCanvas.parent("myVideo");
     pixelDensity(1);
@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-    //if (window.innerHeight != height || window.innerWidth != width) resizeCanvas(window.innerWidth, window.innerHeight)
+    //if (window.height != height || window.width != width) resizeCanvas(window.innerWidth, window.innerHeight)
     background("#8b4049");
     var time = Date.now();
     var offset = ((time/5000)%1)*0.2;
