@@ -1,5 +1,11 @@
 let myCanvas;
 let bgdiv = document.getElementById("myVideo")
+function preload() {
+    // load each shader file (don't worry, we will come back to these!)
+    myShader = loadShader('shader.vert', 'shader.frag');
+}
+
+
 function setup() {
     myCanvas = createCanvas(window.innerWidth, window.innerHeight,WEBGL);
 
@@ -11,8 +17,17 @@ function draw() {
     resizeCanvas(window.innerWidth, window.innerHeight)
     background("#8b4049");
     var time = Date.now();
-    var offset = ((time/5000)%1)*80;
+    var offset = ((time/5000)%1)*0.2;
    
+    // shader() sets the active shader, which will be applied to what is drawn next
+    shader(myShader);
+
+    myShader.setUniform('screenSize', [width/height,1]);
+    myShader.setUniform('mousePos', [(mouseX/width)*width/height,1.-mouseY/height]);
+    myShader.setUniform('offset',[-offset,-offset*0.5]);
+    // apply the shader to a rectangle taking up the full canvas
+    rect(0,0,width,height);
+    
 
 /*
     fill("#543344");
@@ -29,10 +44,10 @@ function draw() {
 
     drawEllipseGrid(14.5,offset+20);
 
-    */ 
+    
     fill("#caa05a");
     
-    drawEllipseGrid(14,offset);
+    drawEllipseGrid(14,offset);*/ 
 }
 
 function drawEllipseGrid(range,offset) {
