@@ -23,29 +23,38 @@ function draw() {
     if (bgdiv.clientHeight != height || bgdiv.clientWidth != width) resizeCanvas(bgdiv.clientWidth,bgdiv.clientHeight)
     background("#543344");
     var time = Date.now();
-    var offset = ((time/5000)%100000)*0.2;
+    var offset = ((time/5000)%100000)*0.1;
+
+    
+    var distOffOff = -window.scrollY/(height-100.);
    
     // shader() sets the active shader, which will be applied to what is drawn next
     shader(myShader);
 
-    myShader.setUniform('screenSize', [width/height,1]);
-    myShader.setUniform('mousePos', [(mouseX/width)*width/height,1.-mouseY/height]);
+    myShader.setUniform('screenSize', [1,height/width]);
+    myShader.setUniform('mousePos', [1.-mouseX/width,(mouseY/height)*height/width]);
     myShader.setUniform('angle',[-0.3]);
 
 
 
     myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    myShader.setUniform('distOffset',[0.1+distOffOff]);
+
     fill("#8b4049")
     rect(0,0,width,height);
 
     offset -= 0.03;
     myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    myShader.setUniform('distOffset',[0.25+distOffOff]);
+
     fill("#ae6a47")
     rect(0,0,width,height);
 
 
     offset -= 0.03;
     myShader.setUniform('offset',[-offset,-offset*0.5]);
+    myShader.setUniform('distOffset',[0.45+distOffOff]);
+
     fill("#caa05a");
     rect(0,0,width,height);
     
