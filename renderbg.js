@@ -10,6 +10,7 @@ function setup() {
     myCanvas = createCanvas(window.innerWidth, window.innerHeight,WEBGL);
 
     myCanvas.parent("myVideo");
+    pixelDensity(1);
     noStroke();
 }
 
