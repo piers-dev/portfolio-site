@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-    if (window.innerHeight != height || window.innerWidth != width) resizeCanvas(window.innerWidth, window.innerHeight)
+    //if (window.innerHeight != height || window.innerWidth != width) resizeCanvas(window.innerWidth, window.innerHeight)
     background("#8b4049");
     var time = Date.now();
     var offset = ((time/5000)%1)*0.2;
