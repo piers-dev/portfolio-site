@@ -14,7 +14,11 @@ function setup() {
     noStroke();
 }
 
+let firstDraw = true;
+
 function draw() {
+    if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
+    firstDraw = false;
     //if (window.height != height || window.width != width) resizeCanvas(window.innerWidth, window.innerHeight)
     background("#8b4049");
     var time = Date.now();
