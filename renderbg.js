@@ -7,7 +7,7 @@ function preload() {
 
 
 function setup() {
-    myCanvas = createCanvas(screen.width, screen.height,WEBGL);
+    myCanvas = createCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100,WEBGL);
 
     myCanvas.parent("myVideo");
     pixelDensity(1);
