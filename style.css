@@ -8,6 +8,7 @@ body {
 html {
   overflow-x: hidden;
   height: 100%;
+  background-color: #543344;
 }
 /* Style the video: 100% width and height to cover the entire window */
 #myVideo {
