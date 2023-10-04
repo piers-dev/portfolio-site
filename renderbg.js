@@ -45,7 +45,7 @@ function draw() {
     // shader() sets the active shader, which will be applied to what is drawn next
     shader(myShader);
 
-    myShader.setUniform('screenSize', (width>height) ? [1,height/width] : [width/height,1]);
+    myShader.setUniform('screenSize', [1,height/width]);
     //myShader.setUniform('mousePos', [1.-mouseX/width,(mouseY/height)*height/width]);
     myShader.setUniform('angle',[-0.3]);
 
