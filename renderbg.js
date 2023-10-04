@@ -30,7 +30,7 @@ function setup() {
 let firstDraw = true;
 
 function draw() {
-    
+    document.documentElement.style.setProperty("--scrolltop", document.documentElement.scrollTop);
 
     //if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
     //firstDraw = false;
