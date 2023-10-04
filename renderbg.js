@@ -46,14 +46,14 @@ function draw() {
 
 
 
-    myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    myShader.setUniform('offset',[-offset+0.5,offset*0.5]);
     myShader.setUniform('distOffset',[0.1+distOffOff]);
 
     fill("#8b4049")
     rect(0,0,width,height);
 
     offset -= 0.03;
-    myShader.setUniform('offset',[-offset+0.5,-offset*0.5]);
+    myShader.setUniform('offset',[-offset+0.5,offset*0.5]);
     myShader.setUniform('distOffset',[0.25+distOffOff]);
 
     fill("#ae6a47")
@@ -61,7 +61,7 @@ function draw() {
 
 
     offset -= 0.03;
-    myShader.setUniform('offset',[-offset,-offset*0.5]);
+    myShader.setUniform('offset',[-offset,offset*0.5]);
     myShader.setUniform('distOffset',[0.45+distOffOff]);
 
     fill("#caa05a");

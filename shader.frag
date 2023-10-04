@@ -18,7 +18,9 @@ vec2 rotate(vec2 v, float a) {
 
 void main() {
     // now because of the varying vTexCoord, we can access the current texture coordinate
-    vec2 uv = rotate(vTexCoord*screenSize,angle);
+    vec2 uv = vTexCoord;
+    uv.y = 1.-uv.y;
+    uv = rotate(uv*screenSize,-angle);
 
     float mouseDistance = length(vTexCoord)/1.5+distOffset;
 
