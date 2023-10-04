@@ -69,7 +69,7 @@ function draw() {
 
 
 
-    document.documentElement.style.setProperty("--scrollPosition",window.scrollY);
+    
 
 /*
     fill("#543344");
