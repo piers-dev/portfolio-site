@@ -6,9 +6,18 @@ function preload() {
 }
 
 
+
+function getWidth() {
+    return visualViewport.width;
+}
+
+function getHeight() {
+    return visualViewport.height;
+}
+
 function setup() {
     bgdiv = document.getElementById("myVideo")
-    myCanvas = createCanvas(bgdiv.clientWidth,bgdiv.clientHeight,WEBGL);
+    myCanvas = createCanvas(getWidth(),getHeight(),WEBGL);
 
     myCanvas.parent("myVideo");
     pixelDensity(1);
@@ -20,10 +29,10 @@ let firstDraw = true;
 function draw() {
     //if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
     //firstDraw = false;
-    if (bgdiv.clientHeight != height || bgdiv.clientWidth != width) resizeCanvas(bgdiv.clientWidth,bgdiv.clientHeight)
+    if (getHeight() != height || getWidth() != width) resizeCanvas(getWidth(),getHeight())
     background("#543344");
     var time = Date.now();
-    var offset = ((time/5000)%100000)*0.1;
+    var offset = ((time/5000)%100000)*0.05;
 
     
     var distOffOff = -window.scrollY/(height-100.);
@@ -57,6 +66,9 @@ function draw() {
 
     fill("#caa05a");
     rect(0,0,width,height);
+
+
+
     
 
 /*
