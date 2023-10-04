@@ -8,6 +8,13 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
     <script>
+      let root = document.documentElement;
+      document.addEventListener("scroll", (evt) => {
+        root.style.setProperty("--scrolltop", root.scrollTop);
+        
+      });
+    </script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -33,9 +40,7 @@
   </video>-->
   <script src="renderbg.js"></script>
 
-  <div id="myVideo">
-
-  </div>
+  <div id="myVideo"></div>
 
   <div class="content">
     <h1>Piers Baker</h1>
@@ -43,12 +48,10 @@
     <h2>↓</h2>
   </div>
 
-
   <div
     class="paragraph"
-    style="background: #caa05a00; min-height: 20vh; flex-direction: column;"
+    style="background: #caa05a00; min-height: 20vh; flex-direction: column"
   >
-
     <div><h2>Games</h2></div>
   </div>
 
@@ -160,17 +163,19 @@
     <div class="paragraph-content" style="text-align: left">
       <h3>MURDLE</h3>
       <p>
-        MURDLE is a fast-paced multiplayer reinterpretation of the Wordle concept. It puts your vocabulary to the test by pitting you against your friends in quick matches of Wordle-like guessing.
-        Every player would first come up with an obscure five letter word. Once everyone had picked, it became a speed-game of trying to guess your opponents' words simultaneously. If your word was revealed, you're out.
+        MURDLE is a fast-paced multiplayer reinterpretation of the Wordle
+        concept. It puts your vocabulary to the test by pitting you against your
+        friends in quick matches of Wordle-like guessing. Every player would
+        first come up with an obscure five letter word. Once everyone had
+        picked, it became a speed-game of trying to guess your opponents' words
+        simultaneously. If your word was revealed, you're out.
         <br /><br />
-        I developed MURDLE on my own to test my programming and design skills. I produced all of the code and art in the final version. Unfortunately it's no longer playable online, but screenshots can be found in the Gallery.
+        I developed MURDLE on my own to test my programming and design skills. I
+        produced all of the code and art in the final version. Unfortunately
+        it's no longer playable online, but screenshots can be found in the
+        Gallery.
       </p>
-      <a
-        class="button-81"
-        role="button"
-        href="#gallery"
-        >View Gallery ↓</a
-      >
+      <a class="button-81" role="button" href="#gallery">View Gallery ↓</a>
     </div>
   </div>
 
@@ -182,51 +187,108 @@
   </div>
   <div class="paragraph" style="background: #ae6a47; min-height: 30vh">
     <div>
-      <img class="content-image" src="media/gallery/water.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/water.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/deathtodiecur.png" onclick="window.open(this.src,'_blank')" />
-      <img class="content-image" src="media/gallery/deathtodietree.png" onclick="window.open(this.src,'_blank')" />
-      <img class="content-image" src="media/gallery/bratus1.png" onclick="window.open(this.src,'_blank')" />
-      
-
+      <img
+        class="content-image"
+        src="media/gallery/deathtodiecur.png"
+        onclick="window.open(this.src,'_blank')"
+      />
+      <img
+        class="content-image"
+        src="media/gallery/deathtodietree.png"
+        onclick="window.open(this.src,'_blank')"
+      />
+      <img
+        class="content-image"
+        src="media/gallery/bratus1.png"
+        onclick="window.open(this.src,'_blank')"
+      />
     </div>
   </div>
 
   <div class="paragraph" style="background: #8b4049; min-height: 30vh">
     <div>
-      <img class="content-image" src="media/gallery/deathtodieold.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/deathtodieold.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/deathtodieold2.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/deathtodieold2.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/catwalk.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/catwalk.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/glassrobot.png" onclick="window.open(this.src,'_blank')" />
-
-      
-      
-      
+      <img
+        class="content-image"
+        src="media/gallery/glassrobot.png"
+        onclick="window.open(this.src,'_blank')"
+      />
     </div>
   </div>
 
   <div class="paragraph" style="background: #543344; min-height: 30vh">
     <div>
-      <img class="content-image" src="media/gallery/robottrain.png" onclick="window.open(this.src,'_blank')" />
-      
-      <img class="content-image" src="media/gallery/robotfence.png" onclick="window.open(this.src,'_blank')" />
-      <img class="content-image" src="media/gallery/robotprevis.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/robottrain.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/murdlemenu.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/robotfence.png"
+        onclick="window.open(this.src,'_blank')"
+      />
+      <img
+        class="content-image"
+        src="media/gallery/robotprevis.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
+      <img
+        class="content-image"
+        src="media/gallery/murdlemenu.png"
+        onclick="window.open(this.src,'_blank')"
+      />
     </div>
   </div>
   <div class="paragraph" style="background: #515262; min-height: 30vh">
     <div>
-      <img class="content-image" src="media/gallery/murdlejoinscreen.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/murdlejoinscreen.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/catcafeoverworld.png" onclick="window.open(this.src,'_blank')" />
-      <img class="content-image" src="media/gallery/catcafe.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/catcafeoverworld.png"
+        onclick="window.open(this.src,'_blank')"
+      />
+      <img
+        class="content-image"
+        src="media/gallery/catcafe.png"
+        onclick="window.open(this.src,'_blank')"
+      />
 
-      <img class="content-image" src="media/gallery/hoodiewf.png" onclick="window.open(this.src,'_blank')" />
+      <img
+        class="content-image"
+        src="media/gallery/hoodiewf.png"
+        onclick="window.open(this.src,'_blank')"
+      />
     </div>
   </div>
 </html>

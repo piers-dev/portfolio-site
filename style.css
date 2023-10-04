@@ -27,6 +27,7 @@ html {
     display: flex;
     flex-direction: column;
     position: relative;
+    top: calc(var(--scrolltop)*var(--scrolltop) * -0.01px);
     
     background: rgba(0, 0, 0, 0);
     color: #f1f1f1;

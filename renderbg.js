@@ -53,7 +53,7 @@ function draw() {
     rect(0,0,width,height);
 
     offset -= 0.03;
-    myShader.setUniform('offset',[-offset*0.7+0.5,offset*.5]);
+    myShader.setUniform('offset',[-offset*0.7+0.5,offset*.6]);
     myShader.setUniform('distOffset',[0.25+distOffOff]);
 
     fill("#ae6a47")
@@ -61,7 +61,7 @@ function draw() {
 
 
     offset -= 0.03;
-    myShader.setUniform('offset',[-offset,offset*.5]);
+    myShader.setUniform('offset',[-offset,offset*.7]);
     myShader.setUniform('distOffset',[0.45+distOffOff]);
 
     fill("#caa05a");
@@ -69,7 +69,7 @@ function draw() {
 
 
 
-    
+    document.documentElement.style.setProperty("--scrollPosition",window.scrollY);
 
 /*
     fill("#543344");
