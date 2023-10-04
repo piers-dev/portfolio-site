@@ -1,5 +1,8 @@
 let myCanvas;
 let bgdiv
+
+
+
 function preload() {
     // load each shader file (don't worry, we will come back to these!)
     myShader = loadShader('shader.vert', 'shader.frag');
@@ -27,6 +30,8 @@ function setup() {
 let firstDraw = true;
 
 function draw() {
+    
+
     //if (firstDraw) resizeCanvas(screen.width, screen.height / window.devicePixelRatio - window.screenTop + 100);
     //firstDraw = false;
     if (getHeight() != height || getWidth() != width) resizeCanvas(getWidth(),getHeight())
