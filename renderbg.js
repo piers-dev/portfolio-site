@@ -11,11 +11,11 @@ function preload() {
 
 
 function getWidth() {
-    return visualViewport.width;
+    return bgdiv.clientWidth;
 }
 
 function getHeight() {
-    return visualViewport.height;
+    return bgdiv.clientHeight;
 }
 
 function setup() {
