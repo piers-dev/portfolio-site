@@ -31,6 +31,7 @@ let externallink;
 let twitterlogo;
 let darkmode;
 let lightmode;
+let file;
 
 let darkMode = false;
 let yellow;
@@ -64,6 +65,7 @@ function preload() {
     play = loadImage('/resources/play.png');
     pause = loadImage('/resources/pause.png');
     movieplayer = loadImage('/resources/movieplayer.png');
+    file = loadImage('/resources/file.png')
 
 
 
@@ -87,8 +89,10 @@ let windowCount = 0;
 let explorer;
 let twitter;
 let notepad;
+let movie;
 
 let notepadTextBox;
+let freelineTextBox;
 
 
 
@@ -110,33 +114,84 @@ function setup() {
 
     //demoVideo.hide();
 
-    explorer = new windowdata(500,50,400,400*0.75+30,movieplayer,"Movie Player",(win)=>{
-
-        if (!win.visible || !win.open) return;
-        tint(255,255)
+    explorer = new windowdata(300,150,450,250,folder,"Explorer",(win) => {
+        if (!win.open || !win.visible) return;
         let offset = (1-win.opacity)*15;
 
-        push()
-
-        beginClip()
-        rect(win.x+10,win.y+40+offset,win.w-20,win.h-50,10)
-        endClip()
-        image(demoVideo,win.x+10,win.y+40+offset,win.w-20,win.h-50)
-        pop()
-
-        if (hoveredWindow == win || !demoVideoPlaying) {
-            if (drawButton(win,win.x+10,win.y+(win.h-45)+offset,35,35,0.2,0.4,0,3,demoVideoPlaying ? pause : play)) {
-                if (demoVideoPlaying) demoVideo.pause(); else demoVideo.loop();
-                demoVideoPlaying = !demoVideoPlaying
+        drawGradient(win.x,win.y+offset+30,win.w,30,0.2,0.2,false,3)
+        //piers.zip
+        if (drawButton(win,win.x+15,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,zipfolder,true)) { 
+            if (!explorerzip.open) {
+            explorerzip.x = win.x+40;
+            explorerzip.y = win.y+40;
             }
-        }
+            openWindow(explorerzip)
+        };
+        noStroke();
+        fill(white);
+        textSize(17)
+        textAlign(CENTER,TOP)
+        text('piers.zip',win.x+15+win.w*0.125,win.y+offset+80+win.w*0.25);
 
-    },1,1.8);
+        
+
+        textAlign(LEFT,TOP)
+        text('C: > Users > admin > Downloads',win.x+10,win.y+offset+37.5);
+
+    },1);
+
+    explorerzip = new windowdata(350,200,450,250,zipfolder,"archive explorer",(win) => {
+        if (!win.open || !win.visible) return;
+        let offset = (1-win.opacity)*15;
+
+        drawGradient(win.x,win.y+offset+30,win.w,30,0.2,0.2,false,3)
+        //piers.zip
+        if (drawButton(win,win.x+15,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,movieplayer,true)) { 
+            openWindow(movie)
+        };
+        
+        noStroke();
+        fill(white);
+        textSize(17)
+        textAlign(CENTER,TOP)
+        text('freeline.mp4',win.x+15+win.w*0.125,win.y+offset+80+win.w*0.25);
+
+        if (drawButton(win,win.x+30+0.25*win.w,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,file,true)) { 
+            if (!freeline.open) {
+                freeline.x = mousePosX+10;
+                freeline.y = mousePosY+10;
+            }
+            openWindow(freeline)
+        };
+        
+        noStroke();
+        fill(white);
+        textSize(17)
+        textAlign(CENTER,TOP)
+        text('freeline.txt',win.x+30+win.w*0.375,win.y+offset+80+win.w*0.25);
+
+        if (drawButton(win,win.x+45+0.5*win.w,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,twitterlogo,true)) { 
+            if (!twitter.open){
+                twitter.x = mousePosX + 10;
+                twitter.y = mousePosY + 10;
+            }
+            openWindow(twitter)
+        };
+        noStroke();
+        fill(white);
+        textSize(17)
+        textAlign(CENTER,TOP)
+        text('twitter.lnk',win.x+45+win.w*0.625,win.y+offset+80+win.w*0.25);
+
+        textAlign(LEFT,TOP)
+        text('C: > Users > admin > Downloads > piers.zip',win.x+10,win.y+offset+37.5);
+    },1)
+
+    explorerzip.open = false;
     
-
+// notepad
     notepadTextBox = createElement('textarea');
     notepadTextBox.elt.value = "Hey There, I'm Piers.\nWelcome to my website!\n\n\nI am a tech artist and solo game developer.\n\nThis site should link to a bunch of my work.\n\nFeel free to look around :)"
-
     notepadTextBox.style('font-family:SUPERO')
     notepadTextBox.style('background:none')
     notepadTextBox.style('border:none')
@@ -187,6 +242,59 @@ function setup() {
         }
     });
 
+    freelineTextBox = createElement('textarea');
+    freelineTextBox.elt.value = "FREELINE!\n\nFreeline is a frenetic, kinetic, y2k parkour platformer.\n\nSet in a vibrant, stylised world, you'll fight for your right to traverse the rooftops freely.\n\n--- more to come ---"
+    freelineTextBox.style('font-family:SUPERO')
+    freelineTextBox.style('background:none')
+    freelineTextBox.style('border:none')
+    freelineTextBox.style('font-size:20px')
+    freelineTextBox.style('vertical-align:top')
+    freelineTextBox.style('resize:none')
+    freelineTextBox.style('line-height:19px')
+    freelineTextBox.style('overflow:auto')
+
+
+    freelineTextBox.style('word-wrap:none')
+
+    freeline = new windowdata(200,500,350,300,notebook,"notepad",(win)=> {
+        freelineTextBox.style(`color:${white}`);
+
+        let offset = (1-win.opacity)*15;
+        freelineTextBox.position(win.x+8,win.y+35+offset);
+        freelineTextBox.size(win.w-20,win.h-48)
+        freelineTextBox.style('visibility',(win.visible && win.open && win.order == 0) ? 'visible' : 'hidden')
+        
+        if (win.visible && win.open && win.order != 0) {
+            let t = freelineTextBox.elt.value;
+
+            let i = 0;
+            let charsSinceSpace = 0;
+            while(i < t.length) {
+                
+                if (t.charAt(i) == " ") charsSinceSpace = 0;
+                else charsSinceSpace++;
+
+                if (charsSinceSpace > (26/350)*win.w) {
+                    t = t.slice(0, i) + " " + t.slice(i);
+                    i++
+                    charsSinceSpace = 0;
+                }
+                
+                i++
+            }
+            
+            textSize(20)
+
+            textWrap(WORD);
+            textFont('SUPERO')
+            noStroke()
+            fill(white)
+            textLeading(19)
+            text(t,win.x+10,win.y+37+offset,win.w-20,win.h-48)
+        }
+    });
+    freeline.open = false;
+
 
     twitter = new windowdata(100,80,250,100,twitterlogo,"Twitter",(win)=> {
         if (!win.open || !win.visible) return;
@@ -203,6 +311,33 @@ function setup() {
     });
 
     twitter.open = false;
+
+
+
+    movie = new windowdata(500,50,400,400*0.75+30,movieplayer,"Movie Player",(win)=>{
+
+        if (!win.visible || !win.open) return;
+        tint(255,255)
+        let offset = (1-win.opacity)*15;
+
+        push()
+
+        beginClip()
+        rect(win.x+10,win.y+40+offset,win.w-20,win.h-50,10)
+        endClip()
+        image(demoVideo,win.x+10,win.y+40+offset,win.w-20,win.h-50)
+        pop()
+
+        if (hoveredWindow == win || !demoVideoPlaying) {
+            if (drawButton(win,win.x+10,win.y+(win.h-45)+offset,35,35,0.2,0.4,0,3,demoVideoPlaying ? pause : play)) {
+                if (demoVideoPlaying) demoVideo.pause(); else demoVideo.loop();
+                demoVideoPlaying = !demoVideoPlaying
+            }
+        }
+
+    },1,1.8);
+
+    movie.open = false;
 }
 
 
@@ -292,29 +427,29 @@ function draw() {
 
     
 
-    if (drawButton(null,100,100,100,100,0.2,0.4,0.5,3,movieplayer,true)) openWindow(explorer);
+    if (drawButton(null,100,100,100,100,0.2,0.4,0.5,3,folder,true)) openWindow(explorer);
     noStroke();
     fill(white);
     textSize(17)
     textAlign(CENTER,TOP)
-    text('Movie Player',150,205);
+    text('Explorer',150,205);
 
 
-    if (drawButton(null,225,300,100,100,0.2,0.4,0.5,3,notebook,true)) openWindow(notepad);
+    if (drawButton(null,100,300,100,100,0.2,0.4,0.5,3,notebook,true)) openWindow(notepad);
     noStroke();
     fill(white);
     textSize(17)
     textAlign(CENTER,TOP)
-    text('Notepad',275,405);
+    text('Notepad',150,405);
 
-
+/*
     if (drawButton(null,75,380,100,100,0.2,0.4,0.5,3,twitterlogo,true)) openWindow(twitter);
     noStroke();
     fill(white);
     textSize(17)
     textAlign(CENTER,TOP)
     text('Twitter',125,485);
-
+*/
 
 
 
