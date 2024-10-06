@@ -33,10 +33,20 @@ let darkmode;
 let lightmode;
 
 let darkMode = false;
+let yellow;
+
+let white;
+
+let demoVideo;
+let demoVideoPlaying = false;
+
+let play;
+let pause;
 
 
 function preload() {
     supero = loadFont('/resources/SUPERO.otf')
+    
     gl = loadImage('/resources/verticalgradientlight.png');
     gd = loadImage('/resources/verticalgradientdark.png');
     folder = loadImage('/resources/folder.png');
@@ -50,11 +60,22 @@ function preload() {
     twitterlogo = loadImage('/resources/twitter.png');
     darkmode = loadImage('/resources/darkmode.png');
     lightmode = loadImage('/resources/lightmode.png');
+    play = loadImage('/resources/play.png');
+    pause = loadImage('/resources/pause.png');
+
 
 
 
     let storeddm = localStorage.getItem('darkmode') == 'true';
     darkMode = storeddm;
+
+    white = color(darkMode ? 0 : 1)
+
+    demoVideo = createVideo(['/resources/samplevideo.webm','/resources/samplevideo.mp4']);
+    demoVideo.volume(0);
+    demoVideo.hide();
+    demoVideo.loop();
+
 
 }
 let windowCount = 0;
@@ -66,6 +87,8 @@ let notepad;
 
 let notepadTextBox;
 
+
+
 function setup() {
 
     frameRate(144)
@@ -74,10 +97,38 @@ function setup() {
     myCanvas = createCanvas(getWidth(), getHeight());
 
 
+    demoVideo.pause();
+
+   //demoVideo.hide();
+
     myCanvas.parent("canvas");
 
 
-    explorer = new windowdata(500,50,400,250,folder,"Explorer");
+
+    //demoVideo.hide();
+
+    explorer = new windowdata(500,50,400,250,folder,"Explorer",(win)=>{
+
+        if (!win.visible || !win.open) return;
+        tint(255,255)
+        let offset = (1-win.opacity)*15;
+
+        push()
+
+        beginClip()
+        rect(win.x+10,win.y+40+offset,win.w-20,win.h-50,10)
+        endClip()
+        image(demoVideo,win.x+10,win.y+40+offset,win.w-20,win.h-50)
+        pop()
+
+        if (hoveredWindow == win || !demoVideoPlaying) {
+            if (drawButton(win,win.x+10,win.y+(win.h-45)+offset,35,35,0.2,0.4,0,3,demoVideoPlaying ? pause : play)) {
+                if (demoVideoPlaying) demoVideo.pause(); else demoVideo.loop();
+                demoVideoPlaying = !demoVideoPlaying
+            }
+        }
+
+    },1,1.5);
     
 
     notepadTextBox = createElement('textarea');
@@ -139,7 +190,7 @@ function setup() {
         let offset = (1-win.opacity)*15;
 
         if (drawButton(win,win.x+win.w-(win.h-50)-10,win.y+40+offset,win.h-50,win.h-50,0.2,0.4,0,3,externallink)) {
-            open("https://x.com/piers_dev",'/blank')
+            open("https://x.com/piers_dev",'_blank')
         }
 
         noStroke()
@@ -160,8 +211,6 @@ let time;
 
 let hwidth,hheight,smin;
 
-let yellow;
-let white;
 
 
 let lastMouseX;
@@ -214,11 +263,11 @@ function draw() {
     mouseDeltaY = mousePosY-lastMouseY;
 
     
-    yellow = color("#FFB300")
-    white = darkMode ? color (0) : color("#FFFFFF")
+    yellow = color("#FFB300");
+    white = lerpColor(white,darkMode ? color (0) : color("#FFFFFF"),0.3)
 
     time = Date.now()/1000;
-
+    
 
     if (width != getWidth() || height != getHeight) {
     resizeCanvas(getWidth(), getHeight());
@@ -229,7 +278,7 @@ function draw() {
     drawGradient(2.5,2.5,width-5,height-72.5,0.2,0.3,false,5);
 
     
-    calculateHovered();
+    if (!mouseDown || mouseDownThisFrame) calculateHovered();
 
 
     hwidth = width/2;
@@ -238,10 +287,7 @@ function draw() {
 
 
 
-    if (drawButton(null,width-65,5,60,60,0.2,0.4,0,3,darkMode ? darkmode : lightmode)) {
-        darkMode = !darkMode
-        localStorage.setItem('darkmode',darkMode)
-    }
+    
 
     if (drawButton(null,100,100,100,100,0.2,0.4,0.5,3,folder,true)) openWindow(explorer);
     noStroke();
@@ -270,7 +316,10 @@ function draw() {
 
 
     drawTaskbar()
-
+    if (drawButton(null,width-67,height-67,60,60,0.2,0.4,0,3,darkMode ? darkmode : lightmode)) {
+        darkMode = !darkMode
+        localStorage.setItem('darkmode',darkMode)
+    }
 
     
     if (mouseDownThisFrame && mousePosY < height-70) calculateSelected();
@@ -294,14 +343,13 @@ function getColor(value) {
 }
 
 function drawTaskbar() {
-    fill(getColor(0.5));
 
     stroke(getColor(0))
 
     strokeWeight(5)
 
-    stroke(getColor(1))
-    drawGradient(0, height-70, width, 70,0.7,0,false,5)
+    stroke(getColor(0.8))
+    drawGradient(0, height-70, width, 70,0.9,0,false,5)
     
 }
 
@@ -311,7 +359,7 @@ let windows = []
 
 class windowdata {
     
-    constructor (x,y,w,h,icon,title,contents = (win)=>{}){
+    constructor (x,y,w,h,icon,title,contents = (win)=>{},ratio=1.4,expand = 1.2){
         this.x = x;
         this.y = y;
         this.w = w;
@@ -342,6 +390,9 @@ class windowdata {
 
         this.title = title;
         this.contents = contents;
+
+        this.ratio = ratio;
+        this.expand = expand;
     }
 }
 
@@ -365,9 +416,9 @@ function drawWindow(win) {
 
     win.opacity = lerp(win.opacity,win.visible && win.open ? 1 : 0,0.5)
 
-    let targetWidth = win.maximised ? Math.min(win.baseW*1.2,width*2) : win.baseW;
+    let targetWidth = win.maximised ? win.baseW*win.expand : win.baseW;
 
-    let targetRatio = ratio * (win.maximised ? 1.4 : 1);
+    let targetRatio = ratio * (win.maximised ? win.ratio : 1);
 
     targetWidth = Math.min(targetWidth,width);
 
@@ -493,7 +544,7 @@ function calculateSelected() {
 function calculateHovered() {
     hoveredWindow = null;
     windows.sort((a,b)=>b.order-a.order)
-    windows.forEach((win)=> {
+    windows.forEach((win)=> { 
         if (mouseRectCheck(win.x,win.y,win.w,win.h) && win.visible && win.open) {
             hoveredWindow = win;
             return;
