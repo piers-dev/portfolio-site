@@ -316,8 +316,10 @@ class windowdata {
         this.y = y;
         this.w = w;
         this.baseW = w;
+        this.idealW = w;
         this.h = h;
         this.baseH = h;
+        this.idealH = h;
 
         this.maximised = false;
 
@@ -352,7 +354,11 @@ function mouseRectCheck(x,y,w,h) {
 
 function drawWindow(win) {
 
+    let ratio = win.baseH / win.baseW;
 
+    win.baseW = Math.min(0.9*width,win.idealW);
+
+    win.baseH = win.baseW*ratio;
 
     win.opacity = lerp(win.opacity,win.visible && win.open ? 1 : 0,0.5)
 
