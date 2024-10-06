@@ -107,7 +107,7 @@ function setup() {
 
     //demoVideo.hide();
 
-    explorer = new windowdata(500,50,400,250,folder,"Explorer",(win)=>{
+    explorer = new windowdata(500,50,400,225+30,folder,"Explorer",(win)=>{
 
         if (!win.visible || !win.open) return;
         tint(255,255)
@@ -128,7 +128,7 @@ function setup() {
             }
         }
 
-    },1,1.5);
+    },1,1.8);
     
 
     notepadTextBox = createElement('textarea');
