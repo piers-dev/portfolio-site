@@ -42,6 +42,7 @@ let demoVideoPlaying = false;
 
 let play;
 let pause;
+let movieplayer;
 
 
 function preload() {
@@ -62,6 +63,8 @@ function preload() {
     lightmode = loadImage('/resources/lightmode.png');
     play = loadImage('/resources/play.png');
     pause = loadImage('/resources/pause.png');
+    movieplayer = loadImage('/resources/movieplayer.png');
+
 
 
 
@@ -107,7 +110,7 @@ function setup() {
 
     //demoVideo.hide();
 
-    explorer = new windowdata(500,50,400,225+30,folder,"Explorer",(win)=>{
+    explorer = new windowdata(500,50,400,400*0.75+30,movieplayer,"Movie Player",(win)=>{
 
         if (!win.visible || !win.open) return;
         tint(255,255)
@@ -289,12 +292,12 @@ function draw() {
 
     
 
-    if (drawButton(null,100,100,100,100,0.2,0.4,0.5,3,folder,true)) openWindow(explorer);
+    if (drawButton(null,100,100,100,100,0.2,0.4,0.5,3,movieplayer,true)) openWindow(explorer);
     noStroke();
     fill(white);
     textSize(17)
     textAlign(CENTER,TOP)
-    text('Explorer',150,205);
+    text('Movie Player',150,205);
 
 
     if (drawButton(null,225,300,100,100,0.2,0.4,0.5,3,notebook,true)) openWindow(notepad);
