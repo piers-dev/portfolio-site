@@ -72,7 +72,7 @@ function preload() {
     let storeddm = localStorage.getItem('darkmode') == 'true';
     darkMode = storeddm;
 
-    white = color(darkMode ? 0 : 1)
+    white = color(darkMode ? 0 : 255)
 
     demoVideo = createVideo(['/resources/samplevideo.webm','/resources/samplevideo.mp4']);
     demoVideo.volume(0);
