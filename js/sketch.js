@@ -360,10 +360,18 @@ function drawWindow(win) {
 
     win.baseH = win.baseW*ratio;
 
+
+    
+
     win.opacity = lerp(win.opacity,win.visible && win.open ? 1 : 0,0.5)
 
     let targetWidth = win.maximised ? Math.min(win.baseW*1.2,width*2) : win.baseW;
-    let targetHeight = win.maximised ? Math.min(win.baseH*1.7,height*2) : win.baseH;
+
+    let targetRatio = ratio * (win.maximised ? 1.4 : 1);
+
+    targetWidth = Math.min(targetWidth,width);
+
+    targetHeight = targetWidth*targetRatio;
     win.w = lerp(win.w,targetWidth,0.3);
     win.h = lerp(win.h,targetHeight,0.3);
 
