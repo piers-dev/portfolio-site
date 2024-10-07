@@ -129,12 +129,13 @@ function setup() {
         };
         noStroke();
         fill(white);
-        textSize(17)
+        textSize(17*(win.w/450))
         textAlign(CENTER,TOP)
         text('piers.zip',win.x+15+win.w*0.125,win.y+offset+80+win.w*0.25);
 
         
 
+        textSize(17)
         textAlign(LEFT,TOP)
         text('C: > Users > admin > Downloads',win.x+10,win.y+offset+37.5);
 
@@ -152,7 +153,7 @@ function setup() {
         
         noStroke();
         fill(white);
-        textSize(17)
+        textSize(17*(win.w/450))
         textAlign(CENTER,TOP)
         text('freeline.mp4',win.x+15+win.w*0.125,win.y+offset+80+win.w*0.25);
 
@@ -166,7 +167,7 @@ function setup() {
         
         noStroke();
         fill(white);
-        textSize(17)
+        textSize(17*(win.w/450))
         textAlign(CENTER,TOP)
         text('freeline.txt',win.x+30+win.w*0.375,win.y+offset+80+win.w*0.25);
 
@@ -179,10 +180,11 @@ function setup() {
         };
         noStroke();
         fill(white);
-        textSize(17)
+        textSize(17*(win.w/450))
         textAlign(CENTER,TOP)
         text('twitter.lnk',win.x+45+win.w*0.625,win.y+offset+80+win.w*0.25);
 
+        textSize(17)
         textAlign(LEFT,TOP)
         text('C: > Users > admin > Downloads > piers.zip',win.x+10,win.y+offset+37.5);
     },1)
