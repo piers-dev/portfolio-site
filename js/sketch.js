@@ -186,7 +186,7 @@ function setup() {
 
         textSize(17)
         textAlign(LEFT,TOP)
-        text('Downloads > piers.zip',win.x+10,win.y+offset+37.5);
+        text('C: > ... > Downloads > piers.zip',win.x+10,win.y+offset+37.5);
     },1)
 
     explorerzip.open = false;
