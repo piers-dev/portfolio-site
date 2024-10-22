@@ -28,7 +28,7 @@ let minicon;
 let closeicon;
 let notebook;
 let externallink;
-let twitterlogo;
+let bskylogo;
 let darkmode;
 let lightmode;
 let file;
@@ -59,7 +59,7 @@ function preload() {
     closeicon = loadImage('/resources/close.png');
     notebook = loadImage('/resources/notepad.png');
     externallink = loadImage('/resources/externallink.png');
-    twitterlogo = loadImage('/resources/twitter.png');
+    bskylogo = loadImage('/resources/bluesky.png');
     darkmode = loadImage('/resources/darkmode.png');
     lightmode = loadImage('/resources/lightmode.png');
     play = loadImage('/resources/play.png');
@@ -87,7 +87,7 @@ let windowCount = 0;
 
 
 let explorer;
-let twitter;
+let bluesky;
 let notepad;
 let movie;
 
@@ -171,18 +171,18 @@ function setup() {
         textAlign(CENTER,TOP)
         text('freeline.txt',win.x+30+win.w*0.375,win.y+offset+80+win.w*0.25);
 
-        if (drawButton(win,win.x+45+0.5*win.w,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,twitterlogo,true)) { 
-            if (!twitter.open){
-                twitter.x = mousePosX + 10;
-                twitter.y = mousePosY + 10;
+        if (drawButton(win,win.x+45+0.5*win.w,win.y + 75 + offset,win.w*0.25,win.w*0.25,0.2,0.4,0.5,3,bskylogo,true)) { 
+            if (!bluesky.open){
+                bluesky.x = mousePosX + 10;
+                bluesky.y = mousePosY + 10;
             }
-            openWindow(twitter)
+            openWindow(bluesky)
         };
         noStroke();
         fill(white);
         textSize(17*(win.w/450))
         textAlign(CENTER,TOP)
-        text('twitter.lnk',win.x+45+win.w*0.625,win.y+offset+80+win.w*0.25);
+        text('bluesky.lnk',win.x+45+win.w*0.625,win.y+offset+80+win.w*0.25);
 
         textSize(17)
         textAlign(LEFT,TOP)
@@ -298,21 +298,21 @@ function setup() {
     freeline.open = false;
 
 
-    twitter = new windowdata(100,80,250,100,twitterlogo,"Twitter",(win)=> {
+    bluesky = new windowdata(100,80,250,100,bskylogo,"Bluesky",(win)=> {
         if (!win.open || !win.visible) return;
         let offset = (1-win.opacity)*15;
 
         if (drawButton(win,win.x+win.w-(win.h-50)-10,win.y+40+offset,win.h-50,win.h-50,0.2,0.4,0,3,externallink)) {
-            open("https://x.com/piers_dev",'_blank')
+            open("https://bsky.app/profile/piers.zip",'_blank')
         }
 
         noStroke()
         fill(white)
         textAlign(RIGHT,CENTER)
-        text('Open In Twitter',win.x+win.w-(win.h-50)-20,win.y+40+0.5*(win.h-50)+offset)
+        text('Open In Bluesky',win.x+win.w-(win.h-50)-20,win.y+40+0.5*(win.h-50)+offset)
     });
 
-    twitter.open = false;
+    bluesky.open = false;
 
 
 
